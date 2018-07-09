@@ -1,0 +1,13 @@
+﻿  started.cpp
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\sum.h(422): warning C4390: ';': empty controlled statement found; is this the intent?
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(61): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(71): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(81): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(96): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(115): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(134): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(146): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(156): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\integrate.h(166): warning C4101: 'se': unreferenced local variable
+d:\googledrive\development\started\symbolicc++3-3.35\headers\symbolic\solve.h(74): warning C4101: 'se': unreferenced local variable
+  started.vcxproj -> D:\GoogleDrive\development\started\started\Debug\started.exe

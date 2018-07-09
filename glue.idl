@@ -1,0 +1,4 @@
+interface web_interface {
+        void  web_interface();
+        [Const] DOMString get_vals([Const] DOMString input_string);
+};

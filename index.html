@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>WebAssem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <textarea id="in_Textarea" rows="20" cols="50">
+x := 2+2; 
+y:=4; 
+z:= x +y;
+  </textarea>
+  <textarea id="out_Textarea" rows="20" cols="50">
+  </textarea>
+  
+  <script src="index.js"></script>
+  <script>   
+
+
+   
+    Module['onRuntimeInitialized'] = onRuntimeInitialized;
+    function onRuntimeInitialized() {
+      console.log("Ready!");
+    } 
+
+
+    var oldVal = "";
+    $("#in_Textarea").on("change keyup paste", function() {
+        var currentVal = $(this).val();
+        if(currentVal == oldVal) {
+            return; //check to prevent multiple simultaneous triggers
+        }
+        oldVal = currentVal;
+        var f = new Module.web_interface();
+        var awns = f.get_vals(currentVal);
+        if(awns == "#ERR"){
+
+        }else{
+          document.getElementById("out_Textarea").value = awns;
+        }
+    });
+
+
+  </script>
+</body>
+
+</html>
