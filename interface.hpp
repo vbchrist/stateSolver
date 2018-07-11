@@ -114,7 +114,11 @@ public:
                 line_out += v.token + " = " + std::to_string(v.value) + "\n";
             }
         }
-        return line_out.c_str();
+
+		char* output_cstr = new char[line_out.length() + 1];
+		strcpy(output_cstr, line_out.c_str());
+
+        return output_cstr;
     }
 };
 

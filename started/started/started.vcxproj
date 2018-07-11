@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\GoogleDrive\development\started\boost_1_67_0;D:\GoogleDrive\development\started\SymbolicC++3-3.35\headers;D:\GoogleDrive\development\started;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\GoogleDrive\development\started\boost_1_67_0;D:\GoogleDrive\development\started\SymbolicC++3-3.35\headers;D:\GoogleDrive\development\started;C:\Users\Noram\source\repos\stateSolver;C:\Users\Noram\source\repos\stateSolver\boost_1_67_0;C:\Users\Noram\source\repos\stateSolver\SymbolicC++3-3.35\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>

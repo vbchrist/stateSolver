@@ -13,12 +13,9 @@ public:
 	pair<vector<string>, vector<string>> adds_removals(vector<string> s1, vector<string> s2);
 
 private:
-
 	vector<string> last_string_vec;
 	string input = "";
 };
-
-
 
 input_delta::input_delta()
 {
@@ -51,10 +48,12 @@ char* input_delta::get_changes(const char*  input_cstr)
 		output += r + "\n";
 	}
 
-	char* output_cstr = new char[output.length() + 1];
-	strcpy(output_cstr, output.c_str());
 
 	last_string_vec = current_string_vec;
+
+	//This is needed for the JS interface
+	char* output_cstr = new char[output.length() + 1];
+	strcpy(output_cstr, output.c_str());
 
 	return output_cstr;
 }
