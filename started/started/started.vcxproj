@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\input_delta.h" />
     <ClInclude Include="..\..\interface.hpp" />
     <ClInclude Include="..\..\shunting_yard.hpp" />
     <ClInclude Include="stdafx.h" />

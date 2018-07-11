@@ -32,5 +32,19 @@ void EMSCRIPTEN_KEEPALIVE emscripten_bind_VoidPtr___destroy___0(void** self) {
   delete self;
 }
 
+// input_delta
+
+input_delta* EMSCRIPTEN_KEEPALIVE emscripten_bind_input_delta_input_delta_0() {
+  return new input_delta();
+}
+
+char* EMSCRIPTEN_KEEPALIVE emscripten_bind_input_delta_get_changes_1(input_delta* self, const char* arg0) {
+  return self->get_changes(arg0);
+}
+
+void EMSCRIPTEN_KEEPALIVE emscripten_bind_input_delta___destroy___0(input_delta* self) {
+  delete self;
+}
+
 }
 

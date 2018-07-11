@@ -1711,7 +1711,7 @@ var ASM_CONSTS = [];
 
 STATIC_BASE = GLOBAL_BASE;
 
-STATICTOP = STATIC_BASE + 363360;
+STATICTOP = STATIC_BASE + 363376;
 /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__I_000101() } }, { func: function() { __GLOBAL__sub_I_core_cpp() } }, { func: function() { __GLOBAL__sub_I_iostream_cpp() } });
 
 
@@ -1720,7 +1720,7 @@ STATICTOP = STATIC_BASE + 363360;
 
 
 
-var STATIC_BUMP = 363360;
+var STATIC_BUMP = 363376;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 
@@ -6173,6 +6173,24 @@ var real__emscripten_bind_VoidPtr___destroy___0 = asm["_emscripten_bind_VoidPtr_
   return real__emscripten_bind_VoidPtr___destroy___0.apply(null, arguments);
 };
 
+var real__emscripten_bind_input_delta___destroy___0 = asm["_emscripten_bind_input_delta___destroy___0"]; asm["_emscripten_bind_input_delta___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__emscripten_bind_input_delta___destroy___0.apply(null, arguments);
+};
+
+var real__emscripten_bind_input_delta_get_changes_1 = asm["_emscripten_bind_input_delta_get_changes_1"]; asm["_emscripten_bind_input_delta_get_changes_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__emscripten_bind_input_delta_get_changes_1.apply(null, arguments);
+};
+
+var real__emscripten_bind_input_delta_input_delta_0 = asm["_emscripten_bind_input_delta_input_delta_0"]; asm["_emscripten_bind_input_delta_input_delta_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__emscripten_bind_input_delta_input_delta_0.apply(null, arguments);
+};
+
 var real__emscripten_bind_web_interface___destroy___0 = asm["_emscripten_bind_web_interface___destroy___0"]; asm["_emscripten_bind_web_interface___destroy___0"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
@@ -6319,6 +6337,18 @@ var _emscripten_bind_VoidPtr___destroy___0 = Module["_emscripten_bind_VoidPtr___
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["_emscripten_bind_VoidPtr___destroy___0"].apply(null, arguments) };
+var _emscripten_bind_input_delta___destroy___0 = Module["_emscripten_bind_input_delta___destroy___0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["_emscripten_bind_input_delta___destroy___0"].apply(null, arguments) };
+var _emscripten_bind_input_delta_get_changes_1 = Module["_emscripten_bind_input_delta_get_changes_1"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["_emscripten_bind_input_delta_get_changes_1"].apply(null, arguments) };
+var _emscripten_bind_input_delta_input_delta_0 = Module["_emscripten_bind_input_delta_input_delta_0"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["_emscripten_bind_input_delta_input_delta_0"].apply(null, arguments) };
 var _emscripten_bind_web_interface___destroy___0 = Module["_emscripten_bind_web_interface___destroy___0"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
@@ -7057,6 +7087,29 @@ Module['VoidPtr'] = VoidPtr;
   VoidPtr.prototype['__destroy__'] = VoidPtr.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} */function() {
   var self = this.ptr;
   _emscripten_bind_VoidPtr___destroy___0(self);
+};
+// input_delta
+/** @suppress {undefinedVars, duplicate} */function input_delta() {
+  this.ptr = _emscripten_bind_input_delta_input_delta_0();
+  getCache(input_delta)[this.ptr] = this;
+};;
+input_delta.prototype = Object.create(WrapperObject.prototype);
+input_delta.prototype.constructor = input_delta;
+input_delta.prototype.__class__ = input_delta;
+input_delta.__cache__ = {};
+Module['input_delta'] = input_delta;
+
+input_delta.prototype['get_changes'] = input_delta.prototype.get_changes = /** @suppress {undefinedVars, duplicate} */function(arg0) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  else arg0 = ensureString(arg0);
+  return Pointer_stringify(_emscripten_bind_input_delta_get_changes_1(self, arg0));
+};;
+
+  input_delta.prototype['__destroy__'] = input_delta.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} */function() {
+  var self = this.ptr;
+  _emscripten_bind_input_delta___destroy___0(self);
 };
 (function() {
   function setupEnums() {

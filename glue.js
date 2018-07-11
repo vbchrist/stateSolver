@@ -203,6 +203,29 @@ Module['VoidPtr'] = VoidPtr;
   var self = this.ptr;
   _emscripten_bind_VoidPtr___destroy___0(self);
 };
+// input_delta
+/** @suppress {undefinedVars, duplicate} */function input_delta() {
+  this.ptr = _emscripten_bind_input_delta_input_delta_0();
+  getCache(input_delta)[this.ptr] = this;
+};;
+input_delta.prototype = Object.create(WrapperObject.prototype);
+input_delta.prototype.constructor = input_delta;
+input_delta.prototype.__class__ = input_delta;
+input_delta.__cache__ = {};
+Module['input_delta'] = input_delta;
+
+input_delta.prototype['get_changes'] = input_delta.prototype.get_changes = /** @suppress {undefinedVars, duplicate} */function(arg0) {
+  var self = this.ptr;
+  ensureCache.prepare();
+  if (arg0 && typeof arg0 === 'object') arg0 = arg0.ptr;
+  else arg0 = ensureString(arg0);
+  return Pointer_stringify(_emscripten_bind_input_delta_get_changes_1(self, arg0));
+};;
+
+  input_delta.prototype['__destroy__'] = input_delta.prototype.__destroy__ = /** @suppress {undefinedVars, duplicate} */function() {
+  var self = this.ptr;
+  _emscripten_bind_input_delta___destroy___0(self);
+};
 (function() {
   function setupEnums() {
     

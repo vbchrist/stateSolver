@@ -2,3 +2,8 @@ interface web_interface {
         void  web_interface();
         [Const] DOMString get_vals([Const] DOMString input_string);
 };
+
+interface input_delta {
+        void  input_delta();
+        DOMString get_changes([Const] DOMString input);
+};

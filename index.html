@@ -21,10 +21,12 @@ z:= x +y;
   <script>   
 
 
-   
+    var d;
+
     Module['onRuntimeInitialized'] = onRuntimeInitialized;
     function onRuntimeInitialized() {
       console.log("Ready!");
+      d = new Module.input_delta();
     } 
 
 
@@ -36,9 +38,9 @@ z:= x +y;
         }
         oldVal = currentVal;
         var f = new Module.web_interface();
-        var awns = f.get_vals(currentVal);
-        if(awns == "#ERR"){
 
+        var awns = d.get_changes(currentVal);
+        if(awns == "#ERR"){
         }else{
           document.getElementById("out_Textarea").value = awns;
         }
