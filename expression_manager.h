@@ -12,6 +12,7 @@ public:
 		for (auto& exp : raw_text) {
 			expressions.emplace_back(exp);
 		}
+		// Add all variants
 	};
 	sys() {}; //Default constructor
 	~sys() {}; //Default constructor

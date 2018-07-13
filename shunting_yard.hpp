@@ -18,6 +18,27 @@
 
 #include <exprtk.hpp>
 
+/*
+
+	Generate a set of classes that reresent the operation.
+	We can use these classes for quick translation between Symbolic and Exprtk and text
+
+	Input text -> 
+	Symbolic Expression + Variant with contraints -> 
+	ID expressions as lin using symbolic df/dt else non-lin ->
+	Matrix of univar/lin/non-lin ->
+	Solve univar -> lin -> non-lin ->
+	Reduction of the eqn set throught CAS or numerically ->
+	Include control struct -> loops
+	Generation of EXPRTK code (what do we get other than speed?) ->
+	Compile for execution ->
+
+	All expressions are held in containers ->
+	Container can be provided access to each others variants ->
+	Containers can be nested
+
+*/
+
 
 inline std::pair<unsigned int, bool> precedence_associativity(const std::string& token) {
 	typedef std::pair<unsigned int, bool> pair_;
@@ -48,8 +69,7 @@ inline std::pair<unsigned int, bool> precedence_associativity(const std::string&
 
 //  https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 std::vector<std::string> Shunting_Yard(std::string& expression) {
-	using namespace std;
-	
+	using namespace std;	
     vector<string> output;
 	vector<string> stack;
 	
@@ -73,17 +93,7 @@ std::vector<std::string> Shunting_Yard(std::string& expression) {
 		else if (exprtk::details::is_base_function(t)) {
 			//  If the token is a function token, 
 			//  then push it onto the stack.
-			/*
-			    "abs", "acos",  "acosh", "asin",  "asinh", "atan",  "atanh",
-                "atan2",  "avg",  "ceil",  "clamp",  "cos",  "cosh",  "cot",
-                "csc",  "equal",  "erf",  "erfc",  "exp",  "expm1", "floor",
-                "frac", "hypot", "iclamp",  "like", "log", "log10",  "log2",
-                "logn", "log1p", "mand", "max", "min", "mod", "mor",  "mul",
-                "ncdf",  "pow",  "root",  "round",  "roundn",  "sec", "sgn",
-                "sin", "sinc", "sinh", "sqrt", "sum", "swap", "tan", "tanh",
-                "trunc",  "not_equal",  "inrange",  "deg2grad",   "deg2rad",
-                "rad2deg", "grad2deg"
-			*/
+
 			stack.push_back(t);
 		}
 
@@ -235,8 +245,28 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 		}
 		else if (exprtk::details::is_base_function(t)) {
 			/*
-				sin,cos,tan,cot,sec,csc,sinh,cosh,ln,log
+			Implemented:
+			sin, cos, tan, cot, sec, csc, sinh, cosh, ln, log
+
+			Implementable:
+			acos, acosh, asin, asinh, atan, atanh,  atan2,
+			cos,  cosh, cot,  csc, sec,  sin, sinc,  sinh,
+			tan, tanh, hypot, rad2deg, deg2grad,  deg2rad,
+			grad2deg, log, log10, log1p,  log2, logn,  sqrt,
+			erf, erfc, exp, expm1, root, ncdf,
+
+			Maybe:
+			avg, sum, mul, frac,
+
+			and, mand, mor, nand, nor, not, or, shl, shr,
+			xnor, xor, true, false
+
+			Not:
+			max, min, abs, sgn, ceil, clamp, floor, 
+			round, roundn, swap, trunc,
+			equal, nequal,
 			*/
+
 			Symbolic n1 = nums.top();
 			nums.pop();
 			if (t == "sin") {
