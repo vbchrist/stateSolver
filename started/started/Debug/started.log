@@ -1,1 +1,13 @@
-﻿  started.vcxproj -> C:\Users\ch816\source\repos\stateSolver\started\Debug\started.exe
+﻿  started.cpp
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\sum.h(422): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(61): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(71): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(81): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(96): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(115): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(134): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(146): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(156): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(166): warning C4101: 'se': unreferenced local variable
+c:\users\noram\source\repos\symbolicc++3-3.35\headers\symbolic\solve.h(74): warning C4101: 'se': unreferenced local variable
+  started.vcxproj -> C:\Users\Noram\source\repos\stateSolver\started\Debug\started.exe

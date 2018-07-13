@@ -9,18 +9,8 @@
 #include <boost/tokenizer.hpp>
 
 #include "exprtk.hpp"
+#include "variant.h"
 
-//using namespace emscripten;
-
-class var
-{
-  public:
-    var(std::string token_) : token(token_){}; 
-    var(){}; //Default constructor
-    ~var(){}; //Default constructor
-    std::string token = "";
-    double value = 0.0;
-};
 
 bool is_digits(const std::string &str)
 {
@@ -36,7 +26,7 @@ bool is_reserved(const std::string &str)
     return is_word || is_func || is_control || is_logic;
 };
 
-inline std::vector<var> compute(std::string expression_string)
+inline std::vector<variant> compute(std::string expression_string)
 {
     using namespace std;
     using namespace boost;
@@ -62,7 +52,7 @@ inline std::vector<var> compute(std::string expression_string)
     // Make var list unique
     set<string> s(variants.begin(), variants.end());
     variants.assign(s.begin(), s.end());    
-    vector<var> unique_vars;
+    vector<variant> unique_vars;
     for (auto &v : variants)
     {
         unique_vars.emplace_back(v);
@@ -83,7 +73,7 @@ inline std::vector<var> compute(std::string expression_string)
     parser_t parser;
     if (!parser.compile(expression_string, expression)){
         cout << "\n" << expression_string << "\nCompilation error...\n";
-        return std::vector<var>();
+        return std::vector<variant>();
     }
 
     auto mid = std::chrono::high_resolution_clock::now();
@@ -106,7 +96,7 @@ public:
     const char* get_vals(const char* input_string)
     {
         std::string line_out;
-        std::vector<var> result = compute(std::string(input_string));
+        std::vector<variant> result = compute(std::string(input_string));
         if(result.size() == 0){
             return "#ERR";            
         }else{

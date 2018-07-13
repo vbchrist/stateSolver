@@ -14,6 +14,7 @@
 #include <boost/math/tools/minima.hpp>
 
 #include <symbolicc++.h>
+//#include <ginac.h>
 
 #include <exprtk.hpp>
 

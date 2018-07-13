@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\ch816\source\repos\stateSolver;C:\Users\ch816\source\repos\boost_1_67_0;C:\Users\ch816\source\repos\SymbolicC++3-3.35\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\ch816\source\repos\cln-1.3.4\src;C:\Users\ch816\source\repos\GiNaC\ginac;C:\Users\ch816\source\repos\stateSolver;C:\Users\ch816\source\repos\boost_1_67_0;C:\Users\ch816\source\repos\SymbolicC++3-3.35\headers;C:\Users\Noram\source\repos\stateSolver;C:\Users\Noram\source\repos\boost_1_67_0;C:\Users\Noram\source\repos\SymbolicC++3-3.35\headers;C:\Users\Noram\source\repos\GiNaC\ginac;C:\Users\Noram\source\repos\cln-1.3.4\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -149,10 +149,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\expression_handler.h" />
+    <ClInclude Include="..\..\expression.h" />
+    <ClInclude Include="..\..\expression_manager.h" />
     <ClInclude Include="..\..\input_delta.h" />
     <ClInclude Include="..\..\interface.hpp" />
     <ClInclude Include="..\..\shunting_yard.hpp" />
+    <ClInclude Include="..\..\variant.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

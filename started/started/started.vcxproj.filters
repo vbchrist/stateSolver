@@ -30,7 +30,13 @@
     <ClInclude Include="..\..\input_delta.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\expression_handler.h">
+    <ClInclude Include="..\..\expression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\variant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\expression_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
