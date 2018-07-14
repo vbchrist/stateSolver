@@ -19,15 +19,23 @@
 #include <exprtk.hpp>
 
 /*
-
 	Generate a set of classes that reresent the operation.
 	We can use these classes for quick translation between Symbolic and Exprtk and text
 
+	Inequalities should be evaluated to 1 (true) or 0 (false) as able.
+	If ineqal evals to 0, stop and return.  Example:
+
+	Re = 2100
+
+	cd=(Re<1000)*(48/Re)+(Re>1000)*(1+0.15*re^0.7)
+	cd=0*(48/Re)+1*(1+0.15*re^0.7) <- Only works where deg freedom of both are ==
+	cd=1+0.15*re^0.7
+	
+
 	Input text -> 
 	Symbolic Expression + Variant with contraints -> 
-	ID expressions as lin using symbolic df/dt else non-lin ->
 	Matrix of univar/lin/non-lin ->
-	Solve univar -> lin -> non-lin ->
+	Solve minimal sets through subs ->
 	Reduction of the eqn set throught CAS or numerically ->
 	Include control struct -> loops
 	Generation of EXPRTK code (what do we get other than speed?) ->
@@ -35,7 +43,7 @@
 
 	All expressions are held in containers ->
 	Container can be provided access to each others variants ->
-	Containers can be nested
+	Containers can be nested.
 
 */
 
@@ -257,6 +265,9 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 
 			Maybe:
 			avg, sum, mul, frac,
+			=, ==, <>, !=, <, <=, >, >= 
+			No diff between :=, =, and == with rearrangment.  
+			== is assumed to be true (1) and the variants must satisfy
 
 			and, mand, mor, nand, nor, not, or, shl, shr,
 			xnor, xor, true, false
@@ -265,6 +276,11 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 			max, min, abs, sgn, ceil, clamp, floor, 
 			round, roundn, swap, trunc,
 			equal, nequal,
+
+			if-then-else, ternary conditional, switch-case,
+			return-statement
+
+			while, for, repeat-until, break, continue
 			*/
 
 			Symbolic n1 = nums.top();
@@ -314,6 +330,7 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 				nums.push(std::stod(t));
 			} else {
 				nums.push(Symbolic(t));
+				// Add variant constructor
 			}
 		}
 	}
