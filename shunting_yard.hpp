@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -230,6 +232,7 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 	//https://discuss.leetcode.com/topic/62487/clean-c-standard-solution-with-stack
 
 	std::stack<Symbolic> nums;
+	std::vector<variant> vars;
 	//is_func is_function;
 
 	for (auto& t : tokens) {
@@ -331,6 +334,8 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 			} else {
 				nums.push(Symbolic(t));
 				// Add variant constructor
+				vars.emplace_back(t);
+
 			}
 		}
 	}

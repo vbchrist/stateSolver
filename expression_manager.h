@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <vector>
 
@@ -12,12 +14,21 @@ public:
 		for (auto& exp : raw_text) {
 			expressions.emplace_back(exp);
 		}
-		// Add all variants
 	};
 	sys() {}; //Default constructor
 	~sys() {}; //Default constructor
 
+	int add(vector<string> e);
+
 	vector<string> raw_text;
 	vector<expression> expressions;
 	vector<variant> variants;
+};
+
+int sys::add(vector<string> e)
+{
+	for (auto& exp : e) {
+		expressions.emplace_back(exp);
+	}
+	return 0;
 };
