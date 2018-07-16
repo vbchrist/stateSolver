@@ -16,9 +16,11 @@
 #include <boost/math/tools/minima.hpp>
 
 #include <symbolicc++.h>
+#include <exprtk.hpp>
 //#include <ginac.h>
 
-#include <exprtk.hpp>
+#include "variant.h"
+
 
 /*
 	Generate a set of classes that reresent the operation.
@@ -227,12 +229,11 @@ std::vector<std::string> Shunting_Yard(std::string& expression) {
 	return output;
 };
 
-Symbolic evalRPN(std::vector<std::string>& tokens) {
+Symbolic evalRPN(std::vector<std::string>& tokens, set<variant>& v) {
 
 	//https://discuss.leetcode.com/topic/62487/clean-c-standard-solution-with-stack
 
 	std::stack<Symbolic> nums;
-	std::vector<variant> vars;
 	//is_func is_function;
 
 	for (auto& t : tokens) {
@@ -333,9 +334,7 @@ Symbolic evalRPN(std::vector<std::string>& tokens) {
 				nums.push(std::stod(t));
 			} else {
 				nums.push(Symbolic(t));
-				// Add variant constructor
-				vars.emplace_back(t);
-
+				v.emplace(t);
 			}
 		}
 	}

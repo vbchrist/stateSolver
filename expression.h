@@ -3,6 +3,7 @@
 #include <string>
 #include "symbolicc++.h"
 #include "shunting_yard.hpp"
+#include "variant.h"
 
 using namespace std;
 class expression
@@ -10,13 +11,23 @@ class expression
 public:
 	expression(string e) : raw_text(e) {
 		auto rpn = Shunting_Yard(raw_text);
-		exp = evalRPN(rpn);
+		exp = evalRPN(rpn, v);
 	};
 	expression() {}; //Default constructor
 	~expression() {}; //Default constructor
+	inline bool contains(const variant& v);
+
 	string raw_text = "";
 	Symbolic exp;
+	set<variant> v;
 };
+
+
+inline bool expression::contains(const variant & var)
+{
+	return v.find(var) != v.end();
+}
+
 /*
 class linear : expression
 {

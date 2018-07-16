@@ -10,13 +10,4 @@ c:\users\ch816\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(146):
 c:\users\ch816\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(156): warning C4101: 'se': unreferenced local variable
 c:\users\ch816\source\repos\symbolicc++3-3.35\headers\symbolic\integrate.h(166): warning C4101: 'se': unreferenced local variable
 c:\users\ch816\source\repos\symbolicc++3-3.35\headers\symbolic\solve.h(74): warning C4101: 'se': unreferenced local variable
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(235): error C2065: 'variant': undeclared identifier
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(235): error C2923: 'std::vector': 'variant' is not a valid template type argument for parameter '_Ty'
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(235): error C2903: 'allocator': symbol is neither a class template nor a function template
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(235): error C3203: 'allocator': unspecialized class template can't be used as a template argument for template parameter '_Alloc', expected a real type
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(235): error C2133: 'vars': unknown size
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(235): error C2512: 'std::vector': no appropriate default constructor available
-  c:\users\ch816\source\repos\boost_1_67_0\boost\detail\container_fwd.hpp(135): note: see declaration of 'std::vector'
-c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(337): error C2662: 'decltype(auto) std::vector<_Ty,_Alloc>::emplace_back<std::basic_string<char,std::char_traits<char>,std::allocator<char>>&>(std::basic_string<char,std::char_traits<char>,std::allocator<char>> &)': cannot convert 'this' pointer from 'std::vector' to 'std::vector<_Ty,_Alloc> &'
-  c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(337): note: Reason: cannot convert from 'std::vector' to 'std::vector<_Ty,_Alloc>'
-  c:\users\ch816\source\repos\statesolver\shunting_yard.hpp(337): note: Conversion requires a second user-defined-conversion operator or constructor
+  started.vcxproj -> C:\Users\ch816\source\repos\stateSolver\started\Debug\started.exe

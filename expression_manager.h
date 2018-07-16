@@ -19,16 +19,44 @@ public:
 	~sys() {}; //Default constructor
 
 	int add(vector<string> e);
+	int make_matrix();
 
 	vector<string> raw_text;
 	vector<expression> expressions;
-	vector<variant> variants;
+	set<variant> variants;
+
+private:
 };
 
 int sys::add(vector<string> e)
 {
 	for (auto& exp : e) {
-		expressions.emplace_back(exp);
+		expression ex(exp);
+		expressions.emplace_back(ex);
+		variants.insert(ex.v.begin(), ex.v.end());
 	}
 	return 0;
-};
+}
+inline int sys::make_matrix()
+{
+	vector<vector<bool>> matrix;
+	vector<bool> row;
+
+	row.resize(variants.size());
+	for (auto& e : expressions) {
+
+		set<variant>::iterator it = variants.begin();
+		for (int i = 0; i < row.size(); i++) {
+			if (e.contains(*it)) {
+				row[i] = true;
+			}
+			else {
+				row[i] = false;
+			}
+			it++;
+		}
+		matrix.emplace_back(row);
+	}
+	return 0;
+}
+;
