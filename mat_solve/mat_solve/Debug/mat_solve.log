@@ -4,4 +4,10 @@ c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(29): 
 c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(37): warning C4018: '<': signed/unsigned mismatch
 c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(57): warning C4018: '<': signed/unsigned mismatch
 c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(90): warning C4018: '<': signed/unsigned mismatch
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(39): warning C4002: too many actual parameters for macro 'assert'
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(51): warning C4002: too many actual parameters for macro 'assert'
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(62): warning C4018: '>=': signed/unsigned mismatch
+  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(61): note: while compiling class template member function 'bool mat<int>::swap_row(const size_t &,const size_t &)'
+  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(113): note: see reference to function template instantiation 'bool mat<int>::swap_row(const size_t &,const size_t &)' being compiled
+  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(107): note: see reference to class template instantiation 'mat<int>' being compiled
   mat_solve.vcxproj -> C:\Users\Noram\source\repos\stateSolver\mat_solve\Debug\mat_solve.exe

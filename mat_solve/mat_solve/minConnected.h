@@ -63,16 +63,6 @@ inline row count(const matrix& M) {
 	return count;
 };
 
-inline row dangle(const matrix& M) {
-	row r = count(M);
-	for (auto i : r) {
-		if () {
-		
-		}
-	}
-	return count;
-};
-
 inline matrix connected(const matrix& M, const int& i) {
 	matrix N = M;
 	int idx = get_index(M, i);
