@@ -51,6 +51,28 @@ inline int get_index(const matrix& M, const int i) {
 	return -1;
 };
 
+inline row count(const matrix& M) {
+	row count(M[0].second.size(), 0);
+	for (auto r : M) {
+		for (auto i = 0; i < r.second.size(); ++i) {
+			if (r.second[i]) {
+				count[i]++;
+			}
+		}
+	}
+	return count;
+};
+
+inline row dangle(const matrix& M) {
+	row r = count(M);
+	for (auto i : r) {
+		if () {
+		
+		}
+	}
+	return count;
+};
+
 inline matrix connected(const matrix& M, const int& i) {
 	matrix N = M;
 	int idx = get_index(M, i);
@@ -65,6 +87,9 @@ inline matrix connected(const matrix& M, const int& i) {
 			connected_set.emplace_back(r);
 		}
 	}
+
+	row rr = count(connected_set);
+
 	return connected_set;
 }
 
@@ -92,6 +117,7 @@ inline matrix min_connected(const matrix& M, const int& idx) {
 	};
 	return min_set;
 }
+
 
 inline void output_row(const idx_row& r) {
 	std::cout << r.first << "	";

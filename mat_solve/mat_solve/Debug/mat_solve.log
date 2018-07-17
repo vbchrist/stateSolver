@@ -1,6 +1,7 @@
 ﻿  mat_solve.cpp
-c:\users\noram\dropbox (personal)\mat_solve\mat_solve\minconnected.h(19): warning C4018: '<': signed/unsigned mismatch
-c:\users\noram\dropbox (personal)\mat_solve\mat_solve\minconnected.h(29): warning C4018: '<': signed/unsigned mismatch
-c:\users\noram\dropbox (personal)\mat_solve\mat_solve\minconnected.h(37): warning C4018: '<': signed/unsigned mismatch
-c:\users\noram\dropbox (personal)\mat_solve\mat_solve\minconnected.h(75): warning C4018: '<': signed/unsigned mismatch
-  mat_solve.vcxproj -> C:\Users\Noram\Dropbox (Personal)\mat_solve\Debug\mat_solve.exe
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(19): warning C4018: '<': signed/unsigned mismatch
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(29): warning C4018: '<': signed/unsigned mismatch
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(37): warning C4018: '<': signed/unsigned mismatch
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(57): warning C4018: '<': signed/unsigned mismatch
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(90): warning C4018: '<': signed/unsigned mismatch
+  mat_solve.vcxproj -> C:\Users\Noram\source\repos\stateSolver\mat_solve\Debug\mat_solve.exe
