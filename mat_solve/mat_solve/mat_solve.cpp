@@ -1,13 +1,16 @@
 ﻿// ConsoleApplication2.cpp : Defines the entry point for the console application.
 
 #include "stdafx.h"
-#include "minConnected.h"
+
+//#include "minConnected.h"
+
 #include <vector>
 #include <algorithm>
+#include <iostream>
+#include <assert.h>
+#include <functional>
 
 /*
-
-
 Following is the list of operators which can be overloaded −
 
 +	-	*	/	%	^
@@ -17,59 +20,113 @@ Following is the list of operators which can be overloaded −
 +=	-=	/=	%=	^=	&=
 |=	*=	<<=	>>=	[]	()
 ->	->*	new	new []	delete	delete []
-
-
 */
 
+
 template< class T >
-class mat {
+class row {
 public:
-	mat<T>::mat(int N_, int M_, T cls) : N(N_), M(M_) {
-		for (auto i = 0; i < N; ++i) {
-			A.emplace_back(std::vector<T>(M, cls));
-		}
-	}
 
-	inline std::vector<T>& operator[](std::size_t idx) {
-		return A[idx]; 
+	row(){};
+	row(const row<T>& vec) : A(vec.A) {};
+	row(const std::vector<T>& vec) : A(vec) {};
+	
+	inline T& operator[](std::size_t idx) {
+		return A[idx];
 	}
-	//inline std::vector<T> operator[](std::size_t idx) {return A[idx];}
-
-	inline mat mat::operator+(const mat& B) {
-		assert(N == B.N, M == B.M);
-		mat<T> C(N, M, 0);
-		for (auto r = 0; r < N; ++r) {
-			for (auto c = 0; c < M; ++c) {
-				C[r][c] = A[r][c] + B.A[r][c];
-			}
-		}
+	inline row operator+(const row& B) {
+		assert(A.size() == B.size());
+		row result;
+		result.reserve(A.size());
+		std::transform(A.begin(), A.end(), B.begin(), std::back_inserter(result), std::plus<T>());
+		return result;
+	}
+	inline row operator-(const row& B) {
+		assert(A.size() == B.size());
+		row C;
+		A.reserve(A.size());
+		std::transform(A.begin(), A.end(), B.begin(), std::back_inserter(C), std::minus<T>());
+		return C;
+	}
+	inline row operator*(const row& B) {
+		assert(A.size() == B.size());
+		row C;
+		A.reserve(A.size());
+		std::transform(A.begin(), A.end(), B.begin(), std::back_inserter(C), std::multiplies<T>());
 		return C;
 	}
 
+	inline auto size() const {
+		return A.size(); 
+	}
 
-	inline mat mat::operator-(const mat& B) {
-		assert(N == B.N, M == B.M);
-		mat<T> C(N, M, 0);
-		for (auto r = 0; r < N; ++r) {
-			for (auto c = 0; c < M; ++c) {
-				C[r][c] = A[r][c] - B.A[r][c];
-			}
+	inline void reserve(size_t size) {
+		A.reserve(size);
+	}
+
+	inline void push_back(T i) {
+		A.push_back(i);
+	}
+
+	const auto begin() const {
+		return A.begin();
+	}
+
+	const auto end() const {
+		return A.end();
+	}
+
+	std::string print() {
+		std::string output;
+		for (auto& idx : A) {
+			output << idx << " ";
 		}
-		return C;
+		return output;
 	}
 
-	inline bool mat::swap_row(const size_t& r1, const size_t& r2) {
-		if (r1 >= N || r2 >= N) { return false; };
-		std::swap(A[r1], A[r2]);
-		return true;
-	}
+	typedef T value_type;
 
-	int N, M;
-	std::vector<std::vector<T>> A;
+private:
+	std::vector<T> A;
 };
+
+template< class T >
+class matrix {
+public:
+	matrix() {};
+	matrix(const matrix<T>& M) : A(M.A) {};
+	matrix(const std::vector<row<T>>& M) : A(M) {};
+	matrix(const std::vector<std::vector<T>>& M) {
+		std::vector<row<T>> result;
+		result.reserve(M.size());
+		size_t size = M[0].size();
+		for (auto&& r : M) {
+			assert(r.size() == size);
+			A.emplace_back(r);
+		}
+	};
+
+	inline row<T>& operator[](std::size_t idx) {
+		return A[idx];
+	}
+
+private:
+	std::vector<row<T>> A;
+};
+
+/*
+template<class T>
+std::ostream& operator<<(std::ostream &o, const row<T> &B)
+{
+	std::string s = B.print();
+	return o;
+}
+*/
 
 int main()
 {
+	using namespace std;
+
 	/*
 	std::vector<row> input = {
 		{ 1,1,0,0,1,0,0,1,0,0,0 },
@@ -103,14 +160,17 @@ int main()
 
 	*/
 
+	row<int> A({ 7,6,5,0 });
+	row<int> B({ 2,2,3,0 });
+	matrix<int> M({ { 2,2,3,0 }, { 2,2,3,0 }, { 2,2,3,0 } });
 
-	mat<int> A(3, 4, 2);
-	mat<int> B(3, 4, -1);
-	
-	auto C = A + B;
-	auto D = A - B;
-	D[0][0] = -20;
-	D.swap_row(0, 2);
+
+	row<int> C = A + B;
+	row<int> D = A - B;
+	row<int> E = A * B;
+
+	auto aa = M[1][2];
 	
 	return 0;
 }
+

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <numeric>
+
 #include "assert.h"
 
 typedef std::vector<int> row;
