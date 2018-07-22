@@ -4,23 +4,13 @@
 
 
 #include "matrix.h"
+
 #include <vector>
 #include <algorithm>
 #include <iostream>
 #include <assert.h>
 #include <functional>
 #include <string> 
-/*
-Following is the list of operators which can be overloaded −
-
-+	-	*	/	%	^
-&	|	~	!	,	=
-<	>	<=	>=	++	--
-<<	>>	==	!=	&&	||
-+=	-=	/=	%=	^=	&=
-|=	*=	<<=	>>=	[]	()
-->	->*	new	new []	delete	delete []
-*/
 
 /*
 For n×m matrix A
@@ -39,19 +29,11 @@ For each row i from 1 to n do
 		Return transformed matrix A.
 */
 
-
-	
-
-
-
-//typedef row<row<int>> matrix;
-
-
-
 int main()
 {
-	using namespace std;
-
+	using namespace std; 
+	typedef row<row<double>> matrix;
+	
 	/*
 	std::vector<row> input = {
 		{ 1,1,0,0,1,0,0,1,0,0,0 },
@@ -70,8 +52,7 @@ int main()
 		{ 0,0,0,0,0,0,1,1,0,1,1 }
 	};
 	*/
-
-
+	
 	matrix input = {
 		{ 1,0,1,1,0,0,0,0,0 }, // 0
 		{ 0,0,1,1,0,0,0,0,0 }, // 1
@@ -101,11 +82,20 @@ int main()
 		{ 0,3,0,5,0,0,6,4 },
 	};
 
-	cout.precision(2);
-	cout << i;
-	GuassJordan(i);
-	cout << i;
+	row<bool> J = {
+		{ 0,1,1,1,0 }
+	};
+	row<bool> K = {
+		{ 1,1,0,0,1 }
+	};
 
+	cout.precision(2);
+	cout << J;
+	cout << K;
+	auto awn = AND(J,K);
+	cout << "\n";
+	cout << awn;
+	
 	return 0;
 }
 

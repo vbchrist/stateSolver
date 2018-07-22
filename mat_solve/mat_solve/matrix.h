@@ -1,19 +1,32 @@
-#pragma once
+﻿#pragma once
+
+/*
+
+Following is the list of operators which can be overloaded −
+
++	-	*	/	%	^
+&	|	~	!	,	=
+<	>	<=	>=	++	--
+<<	>>	==	!=	&&	||
++=	-=	/=	%=	^=	&=
+|=	*=	<<=	>>=	[]	()
+->	->*	new	new []	delete	delete []
+
+*/
 
 #include <vector>
 #include <assert.h>
 
 #include <algorithm>
-//#include <iostream>
-//#include <functional>
-//#include <string> 
 
-
-
-template< class T >
+template<class T>
 class row {
 public:
 	row() {};
+	
+	row(const size_t size) {
+		A.resize(size);
+	};
 
 	row(const std::initializer_list<T> l) : A(l) {};
 
@@ -28,8 +41,13 @@ public:
 	inline row operator+(const row& B) const {
 		assert(A.size() == B.size());
 		row C;
-		C.reserve(A.size());
-		std::transform(A.begin(), A.end(), B.begin(), std::back_inserter(C), std::plus<T>());
+		C.reserve(A.size()); //faster than resize() which calls constructor
+		std::transform(
+			A.begin(), 
+			A.end(), 
+			B.begin(), 
+			std::back_inserter(C), 
+			std::plus<T>());
 		return C;
 	}
 
@@ -109,6 +127,22 @@ public:
 		return C;
 	}
 
+	/*
+	inline row operator&&(const row& B) const {
+		assert(A.size() == B.size());
+		row C;
+		C.reserve(A.size());
+		std::transform(
+			A.begin(), 
+			A.end(), 
+			B.begin(), 
+			std::back_inserter(C), 
+			std::logical_and<T>()
+		);
+		return C;
+	}
+	*/
+
 	inline auto size() const {
 		return A.size();
 	}
@@ -148,25 +182,52 @@ private:
 	std::vector<T> A;
 };
 
+template<class T>
+row<T> AND(row<T> &A, row<T> &B)
+{
+	assert(A.size() == B.size());
+	row<T> C;
+	C.reserve(A.size());
+	std::transform(
+		A.begin(), 
+		A.end(), 
+		B.begin(), 
+		std::back_inserter(C), 
+		[](const T& a_, const T& b_) {
+		return AND(a_,b_);
+	});
+	return C;
+};
 
+template<class T>
+bool AND(T &A, T &B)
+{
+	return A && B;
+};
 
 template<class T>
 std::ostream& operator<<(std::ostream &o, row<row<T>> &M)
 {
-	for (size_t i = 0; i < M.size(); ++i) {
-		for (size_t j = 0; j < M[i].size(); ++j) {
-			o << "	" << M[i][j];
+	for (auto&& r : M) {
+		for (auto&& c : r) {
+			o << "	" << c;
 		}
 		o << "\n";
-	}
-	o << "\n";
-	return o;
+	}	
+	return o << "\n";
 };
 
+template<class T>
+std::ostream& operator<<(std::ostream &o, row<T> &M)
+{
+	for (auto&& r : M) {
+		o << "	" << r;
+	}
+	return o << "\n";
+};
 
-typedef row<row<double>> matrix;
-
-bool GuassJordan(matrix& M) {
+template<class T>
+bool GuassJordan(row<row<T>>& M) {
 
 	std::vector<std::pair<size_t, size_t>> pivots;
 	// Increase i by 1 and j by 1 to choose the new pivot element. Return to Step 1.

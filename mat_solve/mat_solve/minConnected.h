@@ -5,15 +5,11 @@
 #include <iostream>
 #include <iomanip>
 #include <numeric>
+#include <assert.h>
 
-#include "assert.h"
 
-typedef std::vector<int> row;
-typedef std::pair<int, row> idx_row;
-typedef std::vector<std::pair<int, row>> matrix;
-typedef std::vector<int> eq_idx;
-
-inline row and(const row& A, const row& B) {
+template<T>
+inline row<T> and(const row<T>& A, const row<T>& B) {
 	assert(A.size() == B.size());
 	row C;
 	C.resize(A.size());
@@ -22,6 +18,7 @@ inline row and(const row& A, const row& B) {
 	}
 	return C;
 }
+
 
 inline row or(const row& A, const row& B) {
 	assert(A.size() == B.size());
