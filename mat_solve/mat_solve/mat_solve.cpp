@@ -3,7 +3,6 @@
 //#include "minConnected.h"
 
 
-#include "matrix.h"
 
 #include <vector>
 #include <algorithm>
@@ -11,6 +10,9 @@
 #include <assert.h>
 #include <functional>
 #include <string> 
+
+#include "matrix.h"
+#include "minConnected.h"
 
 /*
 For n×m matrix A
@@ -72,6 +74,24 @@ int main()
 		{ 1,0,1,0,1 }, // 4
 	};
 
+	matrix ii = {
+		{ 0,1,1,1,0 }, // 0
+		{ 0,1,1,1,0 }, // 1
+		{ 0,1,1,1,0 }, // 2
+		{ 1,1,0,0,1 }, // 3
+		{ 1,0,1,0,1 }, // 4
+	};
+
+	row<double> iii = { 0,1,1,1,0 };
+
+	matrix j = {
+		{ 0,1,1,1,0 }, // 2
+		{ 1,0,0,0,1 }, // 3
+		{ 0,1,1,1,0 }, // 0
+		{ 0,1,1,1,0 }, // 1
+		{ 0,0,0,0,1 }, // 4
+	};
+
 	matrix M = {
 		{ 0,0,3,5,0,0,6,0 },
 		{ 2,6,2,5,8,0,4,0 },
@@ -82,19 +102,20 @@ int main()
 		{ 0,3,0,5,0,0,6,4 },
 	};
 
+	/*
 	row<bool> J = {
 		{ 0,1,1,1,0 }
 	};
+
 	row<bool> K = {
 		{ 1,1,0,0,1 }
 	};
+	*/
 
 	cout.precision(2);
-	cout << J;
-	cout << K;
-	auto awn = AND(J,K);
-	cout << "\n";
-	cout << awn;
+	auto match = j.match({ 1,0,0,0,1 });
+	cout << connected(j, match) << "\n";
+	cout << min_connected(j, match) << "\n";
 	
 	return 0;
 }

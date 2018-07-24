@@ -1,4 +1,7 @@
 ﻿#pragma once
+#include <vector>
+#include <assert.h>
+#include <algorithm>
 
 /*
 
@@ -13,11 +16,6 @@ Following is the list of operators which can be overloaded −
 ->	->*	new	new []	delete	delete []
 
 */
-
-#include <vector>
-#include <assert.h>
-
-#include <algorithm>
 
 template<class T>
 class row {
@@ -38,10 +36,14 @@ public:
 		return A[idx];
 	}
 
+	inline bool operator==(const row<T>& B) const {
+		return A == B.A;
+	}
+
 	inline row operator+(const row& B) const {
 		assert(A.size() == B.size());
 		row C;
-		C.reserve(A.size()); //faster than resize() which calls constructor
+		C.reserve(A.size()); //  faster than resize() which calls constructor
 		std::transform(
 			A.begin(), 
 			A.end(), 
@@ -127,21 +129,13 @@ public:
 		return C;
 	}
 
-	/*
-	inline row operator&&(const row& B) const {
-		assert(A.size() == B.size());
-		row C;
-		C.reserve(A.size());
-		std::transform(
-			A.begin(), 
-			A.end(), 
-			B.begin(), 
-			std::back_inserter(C), 
-			std::logical_and<T>()
-		);
-		return C;
+	inline void add_row(const T& r) {
+		return A.emplace_back(r);
 	}
-	*/
+
+	inline void remove_row(const T& r) {
+		A.erase(std::remove(A.begin(), A.end(), r), A.end());
+	}
 
 	inline auto size() const {
 		return A.size();
@@ -168,6 +162,11 @@ public:
 		std::swap(A[r1], A[r2]);
 	}
 
+	inline auto match(const T &idx)
+	{
+		return find(A.begin(), A.end(), idx);
+	};
+
 	std::string print() {
 		std::string output;
 		for (auto& idx : A) {
@@ -177,13 +176,19 @@ public:
 	}
 
 	typedef T value_type;
-
+	
 private:
 	std::vector<T> A;
 };
 
 template<class T>
-row<T> AND(row<T> &A, row<T> &B)
+bool and(const T &A, const T &B)
+{
+	return A && B;
+};
+
+template<class T>
+row<T> and(const row<T> &A, const row<T> &B)
 {
 	assert(A.size() == B.size());
 	row<T> C;
@@ -194,15 +199,53 @@ row<T> AND(row<T> &A, row<T> &B)
 		B.begin(), 
 		std::back_inserter(C), 
 		[](const T& a_, const T& b_) {
-		return AND(a_,b_);
+			return and(a_,b_);
 	});
 	return C;
 };
 
 template<class T>
-bool AND(T &A, T &B)
+bool or(const T &A, const T &B)
 {
-	return A && B;
+	return A || B;
+};
+
+template<class T>
+row<T> or(const row<T> &A, const row<T> &B)
+{
+	assert(A.size() == B.size());
+	row<T> C;
+	C.reserve(A.size());
+	std::transform(
+		A.begin(),
+		A.end(),
+		B.begin(),
+		std::back_inserter(C),
+		[](const T& a_, const T& b_) {
+			return or (a_, b_);
+		});
+	return C;
+};
+
+template<class T>
+bool not(const T &A)
+{
+	return !A;
+};
+
+template<class T>
+row<T> not(const row<T> &A)
+{
+	row<T> C;
+	C.reserve(A.size());
+	std::transform(
+		A.begin(),
+		A.end(),
+		std::back_inserter(C),
+		[](const T& x) {
+			return not(x);
+		});
+	return C;
 };
 
 template<class T>
@@ -214,7 +257,7 @@ std::ostream& operator<<(std::ostream &o, row<row<T>> &M)
 		}
 		o << "\n";
 	}	
-	return o << "\n";
+	return o;
 };
 
 template<class T>
@@ -223,7 +266,7 @@ std::ostream& operator<<(std::ostream &o, row<T> &M)
 	for (auto&& r : M) {
 		o << "	" << r;
 	}
-	return o << "\n";
+	return o;
 };
 
 template<class T>
