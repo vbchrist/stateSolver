@@ -1,17 +1,19 @@
 ﻿  mat_solve.cpp
-c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(64): error C2664: 'row<row<double>> connected<double>(const row<row<double>> &,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)': cannot convert argument 2 from 'const std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' to 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
-          with
-          [
-              _Ty=row<double>
-          ]
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(64): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(52): error C2676: binary '++': 'row<row<double>>' does not define this operator or a conversion to a type acceptable to the predefined operator
   c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(118): note: see reference to function template instantiation 'row<row<double>> min_connected<double>(const row<row<double>> &,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)' being compiled
           with
           [
               _Ty=row<double>
           ]
   c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(58): note: see reference to class template instantiation 'row<row<double>>' being compiled
-c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(68): error C3536: 'temp': cannot be used before it is initialized
-c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(68): error C2228: left of '.size' must have class/struct/union
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(68): note: type is 'int'
-c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(75): error C2676: binary '--': 'row<double>' does not define this operator or a conversion to a type acceptable to the predefined operator
+c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(55): error C2664: 'void row<row<double>>::remove_row(const std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &)': cannot convert argument 1 from 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' to 'const std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &'
+          with
+          [
+              _Ty=row<double>
+          ]
+  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(55): note: Reason: cannot convert from 'std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>' to 'const std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>'
+          with
+          [
+              _Ty=row<double>
+          ]
+  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(55): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called

@@ -133,8 +133,8 @@ public:
 		return A.emplace_back(r);
 	}
 
-	inline void remove_row(const T& r) {
-		A.erase(std::remove(A.begin(), A.end(), r), A.end());
+	inline void remove_row(const typename std::vector<T>::iterator& r) {
+		A.erase(r);
 	}
 
 	inline auto size() const {

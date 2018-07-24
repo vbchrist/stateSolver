@@ -28,12 +28,11 @@ inline int count(const row<T>& M) {
 	return c;
 }
 
-
 template<class T>
 inline row<row<T>> connected(const row<row<T>>& M, typename std::vector<row<T>>::iterator idx) {
 	row<T> mask = *idx;
 	row<row<T>> N(M);
-	N.remove_row(*idx); //  This is probably removing all matching 
+	N.remove_row(idx); //  This is probably removing all matching 
 	row<row<T>> connected_set;	
 	connected_set.add_row(mask); 
 	for (auto r : N) {
@@ -46,26 +45,20 @@ inline row<row<T>> connected(const row<row<T>>& M, typename std::vector<row<T>>:
 	return connected_set;
 };
 
-
 template<class T>
-inline row<row<T>> min_connected(const row<row<T>>& M, typename std::vector<row<T>>::iterator idx) {
-	
+inline row<row<T>> min_connected(const row<row<T>>& M, typename std::vector<row<T>>::iterator idx) {	
 	auto min_set = connected(M, idx);
-	
-	for (auto i : min_set) {		
-		//  copy the minimal set
-		auto connected_set = min_set;	
-		//  Remove test row from matrix
-		connected_set.remove_row(i);	
-		//  Get connected set		
-		auto temp = connected(connected_set, connected_set.begin());		
-		//  If conncted set.size() < current then its not a connected row
-		if (temp.size() < connected_set.size()) {
-			min_set.remove_row(i);
-			// Now that a row is removed we need to chack for connectivity again
-			min_set = connected(min_set, idx);
+	min_set.remove_row(idx);
+	for(auto it = min_set.begin(); it != min_set.end(); min_set++) {
+		auto temp = connected(min_set, idx);
+		if (temp.size() < min_set.size()) {
+			min_set.remove_row(it);
+			min_set = temp;
 		}
 	}
+	min_set.add_row(*idx);
+
+	//Trim hanging variables
 	return min_set;
 }
 
