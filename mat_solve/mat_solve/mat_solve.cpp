@@ -34,7 +34,8 @@ For each row i from 1 to n do
 int main()
 {
 	using namespace std; 
-	typedef row<node<bool, int>> matrix;
+	typedef row<node<int, bool>> matrix;
+	typedef node<int, bool> expr;
 	
 	/*
 	std::vector<row> input = {
@@ -56,15 +57,13 @@ int main()
 	*/
 	
 	matrix j = {
-		node<bool, int>(1,{ 1, 0, 0, 0, 1 }),
-		node<bool, int>(2,{ 0, 1, 1, 1, 0 }),
-		node<bool, int>(3,{ 0, 1, 1, 0, 0 }),
-		node<bool, int>(4,{ 0, 0, 1, 1, 0 }),
-		node<bool, int>(5,{ 1, 1, 0, 0, 1 }),
+		expr(1,{ 1, 0, 0, 0, 1 }),
+		expr(2,{ 0, 1, 1, 1, 0 }),
+		expr(3,{ 0, 1, 1, 0, 0 }),
+		expr(4,{ 0, 0, 1, 1, 0 }),
+		expr(5,{ 1, 1, 0, 0, 1 }),
 	};
-
-
-
+	
 	/*
 	row<bool> J = {
 		{ 0,1,1,1,0 }
@@ -76,9 +75,9 @@ int main()
 	*/
 
 	cout.precision(2);
-	auto match = j.match(node<bool, int>(4, { 0, 0, 1, 1, 0 }));
-	//	cout << *match << "\n";
-	//cout << min_connected(j, match) << "\n";
+	auto s = expr(4, { 0, 0, 1, 1, 0 });
+	auto match = j.match(s);
+	//  cout << connected(j, match) << "\n";
 	
 	return 0;
 }

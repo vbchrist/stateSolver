@@ -167,7 +167,7 @@ public:
 		if (!std::is_sorted(A.begin(), A.end())) {
 			std::sort(A.begin(), A.end());
 		}
-		return binary_search(A.begin(), A.end(), idx);
+		return binary_search(A.begin(), A.end(), idx);  // Returns only T/F
 	};
 
 	std::string print() {

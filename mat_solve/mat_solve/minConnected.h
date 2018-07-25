@@ -6,7 +6,7 @@
 
 
 
-template<class T, class U>
+template<class U, class T>
 class node : public row<T> {
 public:
 	node() {};
@@ -17,11 +17,11 @@ public:
 
 	node(const U& val, const row<T>& vec) : row<T>(vec.A), expression(val) {};
 
-	inline bool operator==(const node<T,U>& B) const {
+	inline bool operator==(const node<U,T>& B) const {
 		return expression == B.expression;
 	}
 
-	inline bool operator<(const node<T, U>& B) const {
+	inline bool operator<(const node<U,T>& B) const {
 		return expression < B.expression;
 	}
 
@@ -32,7 +32,7 @@ typedef row<node<bool, int>> matrix;
 typedef node<bool, int> expr;
 
 template<class T, class U>
-std::ostream& operator<<(std::ostream &o, node<T, U> &M)
+std::ostream& operator<<(std::ostream &o, node<U,T> &M)
 {
 	for (auto&& r : M) {
 		o << M.expression << "	" << M.print();
@@ -60,7 +60,7 @@ inline int count(const row<T>& M) {
 }
 
 template<class T, class U>
-inline matrix connected(const matrix& M, const node<T,U>& mask) {
+inline matrix connected(const matrix& M, const node<U,T>& mask) {
 	matrix connected_set;
 	connected_set.add_row(mask); 
 	for (auto r : M) {
@@ -74,7 +74,7 @@ inline matrix connected(const matrix& M, const node<T,U>& mask) {
 };
 
 template<class T, class U>
-inline matrix min_connected(const matrix& M, typename std::vector<node<T, U>>::iterator idx) {
+inline matrix min_connected(const matrix& M, typename std::vector<node<U,T>>::iterator idx) {
 	auto min_set = connected(M, idx);
 	for(auto it = min_set.begin(); it != min_set.end(); it++) {
 		auto temp = connected(min_set, idx);
