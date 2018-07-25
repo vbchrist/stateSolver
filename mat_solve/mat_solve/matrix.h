@@ -164,7 +164,10 @@ public:
 
 	inline auto match(const T &idx)
 	{
-		return find(A.begin(), A.end(), idx);
+		if (!std::is_sorted(A.begin(), A.end())) {
+			std::sort(A.begin(), A.end());
+		}
+		return binary_search(A.begin(), A.end(), idx);
 	};
 
 	std::string print() {
@@ -177,7 +180,6 @@ public:
 
 	typedef T value_type;
 	
-private:
 	std::vector<T> A;
 };
 

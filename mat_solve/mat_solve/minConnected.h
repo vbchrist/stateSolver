@@ -3,10 +3,41 @@
 #include <assert.h>
 #include "matrix.h"
 
+
+
+
 template<class T, class U>
-class expr : public row<T> {
-	// construct from expression & ptr to var list
+class node : public row<T> {
+public:
+	node() {};
+
+	node(const U& val, const std::initializer_list<T> l) : row<T>(l), expression(val) {};
+
+	node(const U& val, const std::vector<T>& vec) : row<T>(vec), expression(val) {};
+
+	node(const U& val, const row<T>& vec) : row<T>(vec.A), expression(val) {};
+
+	inline bool operator==(const node<T,U>& B) const {
+		return expression == B.expression;
+	}
+
+	inline bool operator<(const node<T, U>& B) const {
+		return expression < B.expression;
+	}
+
 	U expression;
+};
+
+typedef row<node<bool, int>> matrix;
+typedef node<bool, int> expr;
+
+template<class T, class U>
+std::ostream& operator<<(std::ostream &o, node<T, U> &M)
+{
+	for (auto&& r : M) {
+		o << M.expression << "	" << M.print();
+	}
+	return o;
 };
 
 template<class T>
@@ -28,14 +59,11 @@ inline int count(const row<T>& M) {
 	return c;
 }
 
-template<class T>
-inline row<row<T>> connected(const row<row<T>>& M, typename std::vector<row<T>>::iterator idx) {
-	row<T> mask = *idx;
-	row<row<T>> N(M);
-	N.remove_row(idx); //  This is probably removing all matching 
-	row<row<T>> connected_set;	
+template<class T, class U>
+inline matrix connected(const matrix& M, const node<T,U>& mask) {
+	matrix connected_set;
 	connected_set.add_row(mask); 
-	for (auto r : N) {
+	for (auto r : M) {
 		auto shared = and(mask, r);
 		if (count(shared) > 0) {
 			mask = or(mask, r);
@@ -45,14 +73,13 @@ inline row<row<T>> connected(const row<row<T>>& M, typename std::vector<row<T>>:
 	return connected_set;
 };
 
-template<class T>
-inline row<row<T>> min_connected(const row<row<T>>& M, typename std::vector<row<T>>::iterator idx) {	
+template<class T, class U>
+inline matrix min_connected(const matrix& M, typename std::vector<node<T, U>>::iterator idx) {
 	auto min_set = connected(M, idx);
-	min_set.remove_row(idx);
-	for(auto it = min_set.begin(); it != min_set.end(); min_set++) {
+	for(auto it = min_set.begin(); it != min_set.end(); it++) {
 		auto temp = connected(min_set, idx);
 		if (temp.size() < min_set.size()) {
-			min_set.remove_row(it);
+			//min_set.remove_row(it);
 			min_set = temp;
 		}
 	}
