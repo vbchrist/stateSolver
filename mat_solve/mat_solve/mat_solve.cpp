@@ -34,27 +34,6 @@ For each row i from 1 to n do
 int main()
 {
 	using namespace std; 
-	typedef row<node<int, bool>> matrix;
-	typedef node<int, bool> expr;
-	
-	/*
-	std::vector<row> input = {
-		{ 1,1,0,0,1,0,0,1,0,0,0 },
-		{ 0,0,0,0,1,0,1,0,0,0,1 },
-		{ 1,1,0,1,0,0,0,1,0,1,0 },
-		{ 0,0,1,0,1,0,1,1,0,0,1 },
-		{ 1,1,0,1,0,0,0,0,0,0,1 },
-		{ 0,0,0,0,1,0,1,0,1,0,0 },
-		{ 0,1,0,1,0,0,0,0,0,0,0 },
-		{ 1,0,0,0,0,0,1,1,0,1,0 },
-		{ 0,0,0,1,0,0,0,0,0,1,0 },
-		{ 0,0,0,1,1,0,1,0,0,0,1 },
-		{ 0,0,0,1,0,0,1,0,0,1,0 },
-		{ 0,1,0,0,0,1,0,1,0,1,0 },
-		{ 0,1,0,1,0,0,0,0,0,0,0 },
-		{ 0,0,0,0,0,0,1,1,0,1,1 }
-	};
-	*/
 	
 	matrix j = {
 		expr(1,{ 1, 0, 0, 0, 1 }),
@@ -63,21 +42,12 @@ int main()
 		expr(4,{ 0, 0, 1, 1, 0 }),
 		expr(5,{ 1, 1, 0, 0, 1 }),
 	};
-	
-	/*
-	row<bool> J = {
-		{ 0,1,1,1,0 }
-	};
-
-	row<bool> K = {
-		{ 1,1,0,0,1 }
-	};
-	*/
 
 	cout.precision(2);
-	auto s = expr(4, { 0, 0, 1, 1, 0 });
-	auto match = j.match(s);
-	//  cout << connected(j, match) << "\n";
+	auto s = node<int, bool>(4, { 0, 0, 1, 1, 0 });
+	cout << *j.match(s) << "\n";
+
+	auto test = connected(j, s);
 	
 	return 0;
 }

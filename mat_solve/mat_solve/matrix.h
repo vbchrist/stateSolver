@@ -162,18 +162,21 @@ public:
 		std::swap(A[r1], A[r2]);
 	}
 
-	inline auto match(const T &idx)
-	{
-		if (!std::is_sorted(A.begin(), A.end())) {
-			std::sort(A.begin(), A.end());
-		}
-		return binary_search(A.begin(), A.end(), idx);  // Returns only T/F
+	auto match(const T& idx) {
+		return std::find(A.begin(), A.end(), idx); 
 	};
 
-	std::string print() {
+	inline std::string print() {
 		std::string output;
-		for (auto& idx : A) {
-			output << idx << " ";
+		if (std::is_same<T, bool>::value) {
+			for (auto& idx : A) {
+				output += std::string(idx ? "1" : "0") + " ";
+			}
+		}
+		else {
+			for (auto& idx : A) {
+				output += idx + " ";
+			}
 		}
 		return output;
 	}
@@ -259,15 +262,6 @@ std::ostream& operator<<(std::ostream &o, row<row<T>> &M)
 		}
 		o << "\n";
 	}	
-	return o;
-};
-
-template<class T>
-std::ostream& operator<<(std::ostream &o, row<T> &M)
-{
-	for (auto&& r : M) {
-		o << "	" << r;
-	}
 	return o;
 };
 
