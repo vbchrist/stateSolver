@@ -210,12 +210,6 @@ row<T> and(const row<T> &A, const row<T> &B)
 };
 
 template<class T>
-bool or(const T &A, const T &B)
-{
-	return A || B;
-};
-
-template<class T>
 row<T> or(const row<T> &A, const row<T> &B)
 {
 	assert(A.size() == B.size());
@@ -230,6 +224,12 @@ row<T> or(const row<T> &A, const row<T> &B)
 			return or (a_, b_);
 		});
 	return C;
+};
+
+template<class T>
+bool or(const T &A, const T &B)
+{
+	return A || B;
 };
 
 template<class T>

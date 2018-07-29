@@ -1,6 +1,7 @@
 #pragma once
 
 #include <assert.h>
+#include <memory>
 #include "matrix.h"
 
 
@@ -14,6 +15,8 @@ public:
 	node(const U& val, const std::vector<T>& vec) : row<T>(vec), expression(val) {};
 
 	node(const U& val, const row<T>& vec) : row<T>(vec.A), expression(val) {};
+
+	node(const node<U, T>& n) : row<T>(n.A), expression(n.expression) {};
 
 	inline bool operator==(const node<U, T>& B) const {
 		return expression == B.expression;
@@ -49,15 +52,16 @@ inline int count(const row<T>& M) {
 }
 
 template<class T, class U>
-inline matrix connected(const matrix& M, node<U, T> mask) {
+inline matrix connected(const matrix& M, node<U, T>& mask) {
 	matrix connected_set;
+	row<T>* mask_ptr = &mask;  //make ptr to mask
 	connected_set.add_row(mask);
 	for (auto& r : M) {
-		auto shared = and(mask, r);
+		row<T> shared = and(*mask_ptr, r);
+		row<T>* shared_ptr = &shared;  //make ptr to shared
 		if (count(shared) > 0) {
-			row<T> tmp1 = mask;
-			row<T> tmp2 = mask;
-			mask = or(tmp1, tmp2); // r is not used as node<U,T>
+			*mask_ptr = or(*mask_ptr, *shared_ptr); 
+			// r is not used as node<U,T>, pass ptrs instead cast as parent
 			connected_set.add_row(r);
 		}
 	}
