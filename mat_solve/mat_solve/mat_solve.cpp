@@ -25,6 +25,13 @@ Matrix of Containers X variants
 expr(container,{vars})
 expr(1,{ 1, 0, 0, 0, 1 })
 
+TODO:
+	1. Minimial connected set (10 hours)
+    2. Solve order (do all numerically for WCS testing) (16 hourS)
+	3. Return input text with ID tags for variables (10 hours)
+	3. Compile solver from expressions (20 hours)
+
+Current time-to-complete 30-60 hours
 */
 
 int main()
