@@ -1,9 +1,5 @@
 ﻿#include "stdafx.h"
 
-//#include "minConnected.h"
-
-
-
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -15,20 +11,20 @@
 #include "minConnected.h"
 
 /*
-For n×m matrix A
-j = 1
-For each row i from 1 to n do
 
-		While column j has all zero elements, j++. 
-		If j>m return.
+Data structure:
 
-		If element aij is zero, then interchange row i with a row x>i that has axj≠0.
+Matrix of Expressions X raw_variants
+Matrix of Steams X stream_variants
+Matrix of Mixtures X mix_variants
+Matrix of Fluids X properties_variants
 
-		Divide each element of row i by aij, thus making the pivot aij equal to one.
+Generic:
+Matrix of Containers X variants
 
-		For each row k from 1 to n, with k≠i, subtract row i multiplied by akj from row k.
+expr(container,{vars})
+expr(1,{ 1, 0, 0, 0, 1 })
 
-		Return transformed matrix A.
 */
 
 int main()

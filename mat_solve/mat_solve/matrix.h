@@ -4,8 +4,7 @@
 #include <algorithm>
 
 /*
-
-Following is the list of operators which can be overloaded −
+Operators which can be overloaded
 
 +	-	*	/	%	^
 &	|	~	!	,	=
@@ -14,7 +13,6 @@ Following is the list of operators which can be overloaded −
 +=	-=	/=	%=	^=	&=
 |=	*=	<<=	>>=	[]	()
 ->	->*	new	new []	delete	delete []
-
 */
 
 template<class T>

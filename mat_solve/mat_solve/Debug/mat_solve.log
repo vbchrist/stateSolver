@@ -1,15 +1,2 @@
 ﻿  mat_solve.cpp
-c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(60): error C2679: binary '=': no operator found which takes a right-hand operand of type 'row<T>' (or there is no acceptable conversion)
-          with
-          [
-              T=bool
-          ]
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(27): note: could be 'node<int,bool> &node<int,bool>::operator =(node<int,bool> &&)'
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(27): note: or       'node<int,bool> &node<int,bool>::operator =(const node<int,bool> &)'
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(60): note: while trying to match the argument list '(node<int,bool>, row<T>)'
-          with
-          [
-              T=bool
-          ]
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(50): note: see reference to function template instantiation 'matrix connected<bool,int>(const matrix &,node<int,bool>)' being compiled
-  c:\users\noram\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(38): note: see reference to class template instantiation 'row<node<int,bool>>' being compiled
+  mat_solve.vcxproj -> C:\Users\Noram\source\repos\stateSolver\mat_solve\Debug\mat_solve.exe
