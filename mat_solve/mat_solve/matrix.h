@@ -129,8 +129,25 @@ public:
 		return C;
 	}
 
+	inline row operator+=(const row& B) const {
+		assert(A.size() == B.size());
+		row C;
+		C.reserve(A.size()); //  faster than resize() which calls constructor
+		std::transform(
+			A.begin(),
+			A.end(),
+			B.begin(),
+			std::back_inserter(C),
+			std::plus<T>());
+		return C;
+	}
+
 	inline void add_row(const T& r) {
 		return A.emplace_back(r);
+	}
+
+	inline void remove_row(const typename std::vector<T>::const_iterator& r) {
+		A.erase(r);
 	}
 
 	inline void remove_row(const typename std::vector<T>::iterator& r) {
@@ -139,6 +156,10 @@ public:
 
 	inline auto size() const {
 		return A.size();
+	}
+
+	inline auto element_size() const {
+		return A[0].size();
 	}
 
 	inline void reserve(size_t size) {
@@ -151,6 +172,10 @@ public:
 
 	const auto begin() const {
 		return A.begin();
+	}
+
+	inline void sort() {
+		std::sort(A.begin(), A.end());
 	}
 
 	const auto end() const {
@@ -182,7 +207,8 @@ public:
 	}
 
 	typedef T value_type;
-	
+
+protected:
 	std::vector<T> A;
 };
 

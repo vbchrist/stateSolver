@@ -9,7 +9,7 @@ template<class U, class T>
 class node : public row<T> {
 public:
 	node() {};
-
+	
 	node(const U& val, const std::initializer_list<T> l) : row<T>(l), expression(val) {};
 
 	node(const U& val, const std::vector<T>& vec) : row<T>(vec), expression(val) {};
@@ -29,8 +29,8 @@ public:
 	U expression;
 };
 
-typedef row<node<int, bool>> matrix;
 typedef node<int, bool> expr;
+typedef row<expr> matrix;
 
 template<class T>
 inline int count(const T& i) {
@@ -52,35 +52,42 @@ inline int count(const row<T>& M) {
 }
 
 template<class T, class U>
-inline matrix connected(const matrix& M, node<U, T>& mask) {
+inline matrix connected(matrix M, node<U, T> mask) {
 	matrix connected_set;
-	row<T>* mask_ptr = &mask;  //make ptr to mask
+	row<T>* mask_ptr = &mask;  //make ptr to mask to cast for template func overload
 	connected_set.add_row(mask);
-	for (auto& r : M) {
-		row<T> shared = and(*mask_ptr, r);
-		row<T>* shared_ptr = &shared;  //make ptr to shared
-		if (count(shared) > 0) {
-			*mask_ptr = or(*mask_ptr, *shared_ptr); 
-			// r is not used as node<U,T>, pass ptrs instead cast as parent
-			connected_set.add_row(r);
+	M.remove_row(M.match(mask));
+
+	std::vector<expr>::const_iterator r = M.begin();
+	while(r != M.end()) {
+		row<T> shared = and(*mask_ptr, *r);
+		row<T>* shared_ptr = &shared;  //make ptr to shared to cast for template func overload
+		auto share_count = count(shared);
+		if(share_count > 0){
+			*mask_ptr = or(*mask_ptr, *r); 
+			connected_set.add_row(*r);
+			M.remove_row(r);
+			r = M.begin();
+		}
+		else {
+			r++;
 		}
 	}
+	connected_set.sort();
 	return connected_set;
 };
 
 template<class T, class U>
-inline matrix min_connected(const matrix& M, typename std::vector<node<U, T>>::iterator idx) {
-	auto min_set = connected(M, idx);
+inline matrix min_connected(matrix M, node<U, T> mask) {
+	auto min_set = connected(M, mask);
 	for (auto it = min_set.begin(); it != min_set.end(); it++) {
-		auto temp = connected(min_set, idx);
+		auto temp = connected(min_set, mask);
 		if (temp.size() < min_set.size()) {
-			//min_set.remove_row(it);
+			min_set.remove_row(it);
 			min_set = temp;
 		}
 	}
-	min_set.add_row(*idx);
 
-	//Trim hanging variables
 	return min_set;
 }
 

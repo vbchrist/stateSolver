@@ -47,8 +47,8 @@ int main()
 	auto s = node<int, bool>(4, { 0, 0, 1, 1, 0 });
 	cout << *j.match(s) << "\n";
 
-	auto test = connected(j, s);
-	
+	auto test = min_connected(j, s);
+
 	return 0;
 }
 
