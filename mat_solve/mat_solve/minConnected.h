@@ -2,6 +2,9 @@
 
 #include <assert.h>
 #include <memory>
+
+#include <iostream>
+
 #include "matrix.h"
 
 
@@ -29,7 +32,9 @@ public:
 	U expression;
 };
 
-typedef node<int, bool> expr;
+//  Dragons!
+//  https://stackoverflow.com/questions/14384880/how-to-prevent-specialization-of-stdvectorbool
+typedef node<int, int> expr;
 typedef row<expr> matrix;
 
 template<class T>
@@ -49,6 +54,26 @@ inline int count(const row<T>& M) {
 		c += count(r);
 	}
 	return c;
+}
+
+inline matrix no_hanging(matrix M) {
+
+	for (auto v = 0; v < M[0].size(); v++) {
+		int v_count = 0;
+		std::vector<expr>::const_iterator remove_row = M.end();
+
+		for (auto r_it = M.begin(); r_it != M.end(); ++r_it) {
+			auto current_row = *r_it;
+			if (current_row[v] == 1) {
+				v_count++;
+				remove_row = r_it;
+			}
+		}
+		if (v_count == 1) {
+			M.remove_row(remove_row);
+		}
+	}
+	return M;
 }
 
 template<class T, class U>
@@ -80,9 +105,17 @@ inline matrix connected(matrix M, node<U, T> mask) {
 template<class T, class U>
 inline matrix min_connected(matrix M, node<U, T> mask) {
 
+	// STEP 0
+	// Remove hanging variables
+
+	matrix min_set = connected(M, mask);
+	 
+
 	// STEP 1
 	// Remove hanging variables
 	// If row removed GOTO STEP 1
+	min_set = no_hanging(min_set);
+	std::cout << "?";
 
 	// STEP 2 (is this required?)
 	// For each row in set
@@ -93,22 +126,13 @@ inline matrix min_connected(matrix M, node<U, T> mask) {
 	// If row removed GOTO STEP 1
 	
 
-	auto min_set = connected(M, mask);
-	/*
-	for (auto it = min_set.begin(); it != min_set.end(); it++) {		
-		auto temp = connected(min_set.remove_row(it) , mask);
-		if (temp.size() < min_set.size()) {
-			min_set = temp;
-		}
-	}
-	*/
-
 	// STEP 3
 	// For earch var:
 	//		Replace rows with or(reduced_row, current_row)
 	//		Repeat until target is univar or unsolvable
 	// If not all rows used make new min set
 	// GOTO STEP 1
+
 
 	// Return set
 
