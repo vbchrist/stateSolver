@@ -39,11 +39,11 @@ int main()
 	using namespace std;
 
 	matrix j = {
-		expr(1,{ 1, 0, 0, 0, 1 }),
+		expr(1,{ 1, 1, 1, 1, 1 }),
 		expr(2,{ 0, 1, 1, 1, 0 }),
-		expr(3,{ 0, 1, 1, 0, 0 }),
+		expr(3,{ 1, 1, 1, 0, 1 }),
 		expr(4,{ 0, 0, 1, 1, 0 }),
-		expr(5,{ 1, 1, 0, 0, 0 }),
+		expr(5,{ 1, 0, 0, 0, 0 }),
 	};
 
 	cout.precision(2);

@@ -1,2 +1,5 @@
 ﻿  mat_solve.cpp
-  mat_solve.vcxproj -> C:\Users\ch816\source\repos\stateSolver\mat_solve\x64\Debug\mat_solve.exe
+c:\users\ch816\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(162): error C2662: 'void node<int,int>::merge(node<int,int>)': cannot convert 'this' pointer from 'const node<int,int>' to 'node<int,int> &'
+  c:\users\ch816\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(162): note: Conversion loses qualifiers
+  c:\users\ch816\source\repos\statesolver\mat_solve\mat_solve\mat_solve.cpp(53): note: see reference to function template instantiation 'matrix min_connected<int,int>(matrix,node<int,int>)' being compiled
+  c:\users\ch816\source\repos\statesolver\mat_solve\mat_solve\minconnected.h(77): note: see reference to class template instantiation 'row<expr>' being compiled

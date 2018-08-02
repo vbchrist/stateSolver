@@ -140,6 +140,14 @@ public:
 		return C;
 	}
 
+	inline T sum() const {
+		T result = 0;
+		for (auto& i : A) {
+			result += i;
+		}
+		return result;
+	};
+
 	inline void add_row(const T& r) {
 		return A.emplace_back(r);
 	}
@@ -189,6 +197,13 @@ public:
 		return std::find(A.begin(), A.end(), idx); 
 	};
 
+	auto sort_by_count() {
+		return std::sort(A.begin(), A.end(),
+			[](const T& x, const T& y){
+				return x.sum() < y.sum();
+			});
+	};
+
 	inline std::string print() {
 		std::string output;
 		if (std::is_same<T, bool>::value) {
@@ -207,7 +222,9 @@ public:
 	typedef T value_type;
 
 protected:
+
 	std::vector<T> A;
+
 };
 
 template<class T>
